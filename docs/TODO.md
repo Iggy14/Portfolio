@@ -1,13 +1,13 @@
 # TODO
 
 ## Content (replace placeholders)
-- [ ] Name, role, tagline, and about text in `src/data/profile.ts`
-- [ ] Real email, GitHub, and LinkedIn links in `src/data/profile.ts`
+- [x] Name, role, tagline, and about text in `src/data/profile.ts`
+- [x] Real email, GitHub, and LinkedIn links in `src/data/profile.ts`
 - [ ] Review the four GitHub projects in `src/data/projects.ts` (RemindU, ReelGroup, TankQ, Finance Tracker). Copy is drafted from each repo's README; the problem/solution wording is an assumption, so correct them (e.g. TankQ may be client work)
-- [ ] Tech stack in `src/data/skills.ts`
-- [ ] Experience in `src/data/experience.ts`
-- [ ] Add `public/resume.pdf`
-- [ ] Update title, description, and Open Graph tags in `index.html`
+- [x] Tech stack in `src/data/skills.ts`
+- [x] Experience in `src/data/experience.ts`
+- [x] Add `public/resume.pdf`
+- [x] Make title/description in `index.html` more specific and add an `og:image`
 
 ## Setup
 - [ ] Create a Formspree (or similar) form and set `VITE_FORM_ENDPOINT` in `.env`
@@ -16,7 +16,7 @@
 ## Design
 - [ ] Apply your designs: layout, spacing, typography, and hero
 - [ ] Finalize the color palette and check text contrast (WCAG AA)
-- [ ] Add an Open Graph / social share image
+- [x] Add an Open Graph / social share image (`public/og.jpg`; after deploy, check the preview in a link debugger)
 - [ ] Decide whether to add a hero photo or illustration
 
 ## Testing
@@ -31,12 +31,12 @@
 - [ ] Run Lighthouse (target 90+ on all categories)
 
 ## Deployment
-- [ ] Choose a host (Vercel, Netlify, or GitHub Pages)
-- [ ] Add the SPA rewrite config for that host (see `ARCHITECTURE.md`)
+- [x] Choose a host (Vercel, Netlify, or GitHub Pages)
+- [x] Add the SPA rewrite config for that host (`vercel.json`; after redeploy, verify `/projects/remindu` loads on refresh)
 - [ ] Set `VITE_FORM_ENDPOINT` in the host's environment settings
 - [ ] Connect a custom domain (optional)
-- [ ] Add `robots.txt` and a sitemap
-- [ ] Initialize git and push to GitHub
+- [x] Add `robots.txt` and a sitemap (in `public/`; update `sitemap.xml` when adding a project slug or changing the domain)
+- [x] Initialize git and push to GitHub
 
 ## Nice to have
 - [ ] Analytics (Plausible or Vercel Analytics)
@@ -45,4 +45,4 @@
 - [ ] Testimonials section
 - [ ] Blog or case studies (MDX)
 - [ ] Unit tests for the contact form (Vitest)
-- [ ] Rewrite `README.md` (it's still the Vite default)
+- [x] Rewrite `README.md`

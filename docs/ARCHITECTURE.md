@@ -20,7 +20,7 @@ A single-page portfolio built with Vite, React 19, and TypeScript. It has no bac
 
 ```
 public/
-  favicon.png            Favicon (rounded-corner crop)
+  favicon.svg            Favicon (pink rounded square, "HL", cat ears)
   resume.pdf             Resume (add yours; opened by the nav button)
   projects/              Project images
 src/

@@ -1,32 +1,48 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio of Hsu Lab Phyo Pai (Iggy), a software developer. Live at https://portfolio-taupe-seven-n4djdw0nk9.vercel.app/
 
-Currently, two official plugins are available:
+A single-page site with a home page (hero, about, featured projects, tech stack, experience), a projects index, per-project detail pages with image galleries, a contact form, and a light/dark theme.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech stack
 
-## React Compiler
+Vite, React 19, TypeScript, Tailwind CSS v4, shadcn/ui, React Router, Framer Motion, React Hook Form + Zod. There is no backend; the contact form posts to a third-party form service (Formspree).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+cp .env.example .env.local   # then set VITE_FORM_ENDPOINT
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+| Script | What it does |
+|---|---|
+| `npm run dev` | Start the dev server |
+| `npm run build` | Type-check and build to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Lint with oxlint |
+
+## Configuration
+
+`VITE_FORM_ENDPOINT` is your Formspree form URL (`https://formspree.io/f/xxxxxxx`). Without it the contact form logs a warning and does not send. Set it in `.env.local` for local work and in the Vercel project's environment settings for production.
+
+## Editing content
+
+All content lives in typed files under `src/data/`:
+
+- `profile.ts`: name, role, about text, email, social links
+- `projects.ts`: projects (add images under `public/projects/<slug>/`)
+- `skills.ts`: tech stack
+- `experience.ts`: work history and education
+
+When you add a project, also add its URL to `public/sitemap.xml`.
+
+## Deployment
+
+Deployed on Vercel. `vercel.json` rewrites unknown paths to `index.html` so deep links such as `/projects/remindu` work with `BrowserRouter`.
+
+## Docs
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): how the site is structured and the patterns to follow
+- [`docs/TODO.md`](docs/TODO.md): remaining work

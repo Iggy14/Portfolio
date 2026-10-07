@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#f9a8d4"/>
+  <!-- cat ears: black outer, orange inner -->
+  <path d="M13 31 L14 9 L30 21 Z" fill="#111111" stroke="#111111" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M51 31 L50 9 L34 21 Z" fill="#111111" stroke="#111111" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M17 24 L17.5 15 L25 20.5 Z" fill="#fb923c"/>
+  <path d="M47 24 L46.5 15 L39 20.5 Z" fill="#fb923c"/>
+  <text x="35" y="53" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="30">
+    <tspan fill="#7c3aed" stroke="#ffffff" stroke-width="1.5" paint-order="stroke">H</tspan><tspan fill="#7c3aed" stroke="#ffffff" stroke-width="1.5" paint-order="stroke">L</tspan>
+  </text>
+</svg>
