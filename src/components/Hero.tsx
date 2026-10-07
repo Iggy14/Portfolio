@@ -47,7 +47,7 @@ export default function Hero() {
       className="relative scroll-mt-16 overflow-hidden bg-gradient-to-br from-hero-from via-hero-via to-hero-to"
     >
       <h1 className="sr-only">{profile.name}</h1>
-      <div className="relative flex h-[calc(100svh-4rem)] min-h-[34rem] flex-col">
+      <div className="relative mx-auto flex h-[calc(100svh-4rem)] min-h-[34rem] max-w-[90rem] flex-col">
         {/* Layer 1: solid name, behind the portrait */}
         <NameLines className="z-0 text-hero-text" />
 

@@ -50,6 +50,13 @@
     scroll-behavior: smooth;
   }
 
+  /* Above 1440px, scale every rem-based size with the viewport so wide screens look like a 1440px one. */
+  @media (min-width: 90rem) {
+    html {
+      font-size: min(1.1111vw, 32px);
+    }
+  }
+
   body {
     background-color: var(--color-cream);
     color: var(--color-ink);
