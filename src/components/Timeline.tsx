@@ -3,7 +3,7 @@ import Reveal from './Reveal'
 
 export default function Timeline({ items }: { items: Experience[] }) {
   return (
-    <ol className="max-w-3xl space-y-8 border-l-2 border-pink pl-6">
+    <ol className="mx-auto max-w-3xl space-y-8 border-l-2 border-pink pl-6">
       {items.map((item, i) => (
         <li key={`${item.company}-${item.period}`} className="relative">
           <span className="absolute -left-[33px] top-2 h-3 w-3 rounded-full bg-rose-dark" aria-hidden />

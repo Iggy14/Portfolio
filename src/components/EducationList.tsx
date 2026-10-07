@@ -3,7 +3,7 @@ import Reveal from './Reveal'
 
 export default function EducationList({ items }: { items: Experience[] }) {
   return (
-    <ul className="max-w-3xl divide-y divide-pink/60">
+    <ul className="mx-auto max-w-3xl divide-y divide-pink/60">
       {items.map((item, i) => (
         <li key={`${item.company}-${item.period}`}>
           <Reveal delay={i * 0.08}>

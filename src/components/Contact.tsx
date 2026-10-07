@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -20,6 +20,8 @@ const field =
   'w-full rounded-xl border border-pink bg-surface px-4 py-3 text-ink placeholder:text-ink-soft/60 focus:border-rose-dark focus:outline-none focus:ring-2 focus:ring-pink'
 
 export default function Contact() {
+  const [catsOpen, setCatsOpen] = useState(false)
+  const catsRef = useRef<HTMLButtonElement>(null)
   const [status, setStatus] = useState<'idle' | 'sent' | 'error'>('idle')
   const {
     register,
@@ -27,6 +29,16 @@ export default function Contact() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) })
+
+  // Touch screens have no hover: tap the cats to toggle the bubble, tap elsewhere to close it
+  useEffect(() => {
+    if (!catsOpen) return
+    const close = (e: PointerEvent) => {
+      if (!catsRef.current?.contains(e.target as Node)) setCatsOpen(false)
+    }
+    document.addEventListener('pointerdown', close)
+    return () => document.removeEventListener('pointerdown', close)
+  }, [catsOpen])
 
   const onSubmit = async (values: FormValues) => {
     if (!endpoint) {
@@ -49,8 +61,16 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" data-nav="contact" className="scroll-mt-16 bg-blush py-20">
-      <div className="mx-auto max-w-xl px-4 sm:px-6">
+    <section id="contact" data-nav="contact" className="relative scroll-mt-16 overflow-hidden bg-blush pt-20 pb-40 md:pb-20">
+      <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2">
+        <Reveal className="hidden md:block">
+          <img
+            src="/contact.jpg"
+            alt="Portrait"
+            loading="lazy"
+            className="mx-auto aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
+          />
+        </Reveal>
         <Reveal>
           <SectionHeading eyebrow="Contact" title="Let's work together" />
           <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
@@ -93,6 +113,24 @@ export default function Contact() {
           </form>
         </Reveal>
       </div>
+      <button
+        ref={catsRef}
+        type="button"
+        aria-expanded={catsOpen}
+        onClick={() => setCatsOpen((o) => !o)}
+        className="group absolute right-4 bottom-0 flex cursor-pointer items-end gap-2 sm:right-8 md:gap-3"
+      >
+        <span
+          role="tooltip"
+          className={`pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 translate-y-1 rounded-xl border border-pink bg-surface px-3 py-1.5 text-center text-xs whitespace-nowrap text-ink shadow-md transition duration-200 group-hover:translate-y-0 group-hover:opacity-100 ${catsOpen ? 'translate-y-0 opacity-100' : 'opacity-0'}`}
+        >
+          <span className="block">hire our mom ಠ_ಠ</span>
+          <span className="block font-medium">-muffin &amp; cafay</span>
+          <span className="absolute top-full left-1/2 size-2.5 -translate-x-1/2 -translate-y-1.5 rotate-45 border-r border-b border-pink bg-surface" />
+        </span>
+        <img src="/muffin.png" alt="Muffin the cat" loading="lazy" className="h-24 w-auto md:h-32" />
+        <img src="/cafay.png" alt="Cafay the cat" loading="lazy" className="h-28 w-auto md:h-36" />
+      </button>
     </section>
   )
 }

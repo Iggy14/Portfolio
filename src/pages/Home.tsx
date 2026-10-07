@@ -71,11 +71,11 @@ export default function Home() {
       <section id="experience" data-nav="about" className="scroll-mt-16 pb-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
-            <SectionHeading eyebrow="Journey" title="Experience" />
+            <SectionHeading eyebrow="Journey" title="Experience" centered />
           </Reveal>
           <Timeline items={experience} />
           <Reveal>
-            <h3 className="mb-6 mt-14 text-2xl">Education</h3>
+            <h3 className="mb-6 mt-14 text-center text-2xl">Education</h3>
           </Reveal>
           <EducationList items={education} />
         </div>
