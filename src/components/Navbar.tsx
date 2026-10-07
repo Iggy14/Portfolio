@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { profile } from '../data/profile'
+import ThemeToggle from './ThemeToggle'
 import { useActiveSection, type NavKey } from '../hooks/useActiveSection'
 
 export default function Navbar() {
@@ -10,7 +11,11 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
-  const links: { key: Exclude<NavKey, null>; label: string; to: string | { pathname: string; hash: string } }[] = [
+  const links: {
+    key: Exclude<NavKey, null>
+    label: string
+    to: string | { pathname: string; hash: string }
+  }[] = [
     { key: 'home', label: 'Home', to: '/' },
     { key: 'about', label: 'About', to: '/#about' },
     { key: 'projects', label: 'Projects', to: '/projects' },
@@ -48,12 +53,12 @@ export default function Navbar() {
     >
       <a
         href="#main"
-        className="absolute left-4 top-2 -translate-y-20 rounded bg-rose-dark px-3 py-2 text-sm text-white focus:translate-y-0"
+        className="absolute left-4 top-2 -translate-y-20 rounded bg-rose-dark px-3 py-2 text-sm text-on-accent focus:translate-y-0"
       >
         Skip to content
       </a>
 
-      <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <nav aria-label="Main" className="flex h-16 items-center justify-between px-[30px]">
         <Link to="/" onClick={() => setOpen(false)} className="font-display text-2xl text-rose-dark">
           {profile.name}
         </Link>
@@ -64,26 +69,30 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
+          <ThemeToggle />
           <a
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-3 rounded-full bg-rose-dark px-5 py-2 text-sm font-medium text-white transition hover:bg-rose hover:text-ink"
+            className="ml-1 rounded-full bg-rose-dark px-5 py-2 text-sm font-medium text-on-accent transition hover:bg-rose hover:text-on-rose"
           >
             Resume
           </a>
         </div>
 
-        <button
-          type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-full text-rose-dark md:hidden"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
+        <div className="flex items-center md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-rose-dark"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {open && (
@@ -107,7 +116,7 @@ export default function Navbar() {
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 block rounded-full bg-rose-dark py-3 text-center font-medium text-white"
+            className="mt-8 block rounded-full bg-rose-dark py-3 text-center font-medium text-on-accent"
           >
             Resume
           </a>

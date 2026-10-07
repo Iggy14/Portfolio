@@ -23,14 +23,14 @@ export const profile: Profile = {
   role: 'Software Developer',
   tagline: 'I build thoughtful, responsive web experiences with React and TypeScript.',
   about: [
-    'Write a short intro about who you are and what you do.',
-    'Add a second paragraph about what you care about, what you are learning, or what you are looking for.',
+    'Hi! I am Iggy. I loveee building things that actually solve problems with a background in data analytics. >_<',
+    'I’m comfortable working across the full stack, from designing REST APIs and database schemas to building responsive, mobile-first UIs, with hands-on experience using React, Node.js, Firebase, and PostgreSQL.',
   ],
-  email: 'you@example.com',
+  email: 'hsulab9@gmail.com',
   resumeUrl: '/resume.pdf',
   socials: [
-    { label: 'GitHub', href: 'https://github.com/your-username', icon: 'github' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/your-username', icon: 'linkedin' },
-    { label: 'Email', href: 'mailto:you@example.com', icon: 'email' },
+    { label: 'GitHub', href: 'https://github.com/Iggy14', icon: 'github' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hsu-lab-phyo-pai-b65669309', icon: 'linkedin' },
+    { label: 'Email', href: 'mailto:hsulab9@gmail.com', icon: 'email' },
   ],
 }

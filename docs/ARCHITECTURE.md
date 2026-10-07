@@ -11,6 +11,7 @@ A single-page portfolio built with Vite, React 19, and TypeScript. It has no bac
 | Styling | Tailwind CSS v4 (theme tokens in `src/index.css`) |
 | Routing | React Router (`BrowserRouter`) |
 | Animation | Framer Motion |
+| UI components | shadcn/ui (Radix base; `components.json`, files in `src/components/ui/`) |
 | Forms | React Hook Form + Zod |
 | Icons | react-icons |
 | Lint | oxlint |
@@ -19,7 +20,7 @@ A single-page portfolio built with Vite, React 19, and TypeScript. It has no bac
 
 ```
 public/
-  favicon.svg            Custom favicon
+  favicon.png            Favicon (rounded-corner crop)
   resume.pdf             Resume (add yours; opened by the nav button)
   projects/              Project images
 src/
@@ -41,7 +42,13 @@ src/
     SocialLinks.tsx      Icon links (hero and footer)
     SectionHeading.tsx
     Hero.tsx             Home hero: name in 3 layers (solid / portrait / outlined), from profile.heroLines
+    ThemeToggle.tsx      Light/dark switch
+    Timeline.tsx         Vertical timeline for experience and education (both use the Experience shape)
+    EducationList.tsx    Minimal education list (degree, school, right-aligned dates)
     Reveal.tsx           Scroll-triggered fade/slide-up wrapper
+    ProjectGallery.tsx   Project images: desktop hero + thumbnails, phone strip
+    GalleryLightbox.tsx  Dialog + Carousel viewer opened from the gallery
+    ui/                  shadcn/ui components (button, dialog, tabs, carousel)
   hooks/
     useActiveSection.ts  Scroll-spy for nav highlighting
   pages/
@@ -96,6 +103,8 @@ On the home page, the sections map to nav items as follows:
 
 ## Content model
 
+Tech stack entries in `skills.ts` are `{ name, url, icon, color? }`, with `icon` a `react-icons/si` component and `url` the official site. `TechBento.tsx` renders them as a bento grid: one card per category (card widths are in its `spans` map, keyed by category name), with logo-only tiles shown in brand colour that reveal the name on hover or focus. Tiles open `url` in a new tab, so `name` is also the tooltip and `aria-label`. A new category needs an entry in `spans`, or it falls back to a 2-column card.
+
 All copy and project data is in `src/data/` as typed arrays and objects. To change content, edit these files; no component changes are needed. A project's `slug` forms its URL, `featured: true` puts it on the home page, and the `images` array fills its detail page.
 
 ## Contact form
@@ -104,13 +113,13 @@ All copy and project data is in `src/data/` as typed arrays and objects. To chan
 
 ## Styling and theme
 
-Tailwind v4 theme tokens in `src/index.css` define the palette: `cream`, `cream-dark`, `blush`, `pink`, `rose`, `rose-dark`, `ink`, and `ink-soft`. Fonts are DM Serif Display for headings, Inter for body text, and Anton (`font-hero`) for the hero name, loaded from Google Fonts in `index.html`. There is one light theme and no dark mode. Layout is mobile-first, and the nav switches to a hamburger drawer below the `md` breakpoint.
+Tailwind v4 theme tokens in `src/index.css` define the palette: `cream`, `cream-dark`, `blush`, `pink`, `rose`, `rose-dark`, `ink`, and `ink-soft`. Fonts are DM Serif Display for headings, Inter for body text, and Anton (`font-hero`) for the hero name, loaded from Google Fonts in `index.html`. Dark mode: `:root.dark` in `index.css` overrides the same tokens (plus `surface`, `on-accent`, `on-rose`, `hero-*`), so components use tokens and never `dark:` variants; use `bg-surface` instead of `bg-white` and `text-on-accent` instead of `text-white`. `ThemeToggle` (in the navbar) toggles the class and saves to `localStorage`; an inline script in `index.html` applies it before paint, defaulting to the OS preference. Layout is mobile-first, and the nav switches to a hamburger drawer below the `md` breakpoint.
 
 ## Performance
 
 - Route-level code splitting through `React.lazy`.
 - Images use `loading="lazy"` (except the first project detail image), `decoding="async"`, and explicit width/height to avoid layout shift.
-- Thumbnails use one fixed aspect ratio (16:10).
+- Card thumbnails and gallery desktop shots use one fixed aspect ratio (2:1), matching 1920x~980 screenshots.
 
 ## Accessibility
 
@@ -132,3 +141,15 @@ npm run preview  # serve the production build
 ## Deployment notes
 
 The output is a static site in `dist/`. Because routing uses `BrowserRouter`, the host must rewrite unknown paths to `index.html` so deep links such as `/projects/project-one` work. Vercel and Netlify need a rewrite rule for this (`vercel.json` or `_redirects`); GitHub Pages needs a `404.html` fallback or a switch to `HashRouter`. Set `VITE_FORM_ENDPOINT` as an environment variable in the host's settings.
+
+## Project images and the gallery
+
+A project's `images` is `ProjectImage[]`: `{ src, alt, kind? }`. `kind: 'mobile'` puts a shot in the phone strip (9:19.5 frames, horizontal scroll with snap); anything else is a desktop shot, shown as a 2:1 hero with a thumbnail strip underneath. Either group may be empty. Clicking any shot opens `GalleryLightbox`, which pages through desktop shots first, then mobile.
+
+### Mobile-only projects on the card
+
+Set `thumbnailKind: 'mobile'` on a project that only exists as a phone app. `ProjectCard` then keeps its 2:1 media area but renders `PhoneStack` (up to three `kind: 'mobile'` images as phone frames, first shot in the centre) instead of the cropped `thumbnail`. Such a project needs at least one mobile image; `thumbnail` is unused for the card.
+
+## shadcn/ui
+
+Components live in `src/components/ui/` and import through the `@/` alias (`src/*`, set in `tsconfig.json`, `tsconfig.app.json` and `vite.config.ts`). The shadcn tokens (`--background`, `--primary`, `--border`, etc.) at the end of `src/index.css` point at the site palette, so they follow dark mode with no extra work. Add components with `npx shadcn@latest add <name>`, then check that `index.css` keeps the Inter font and cream body background (the shadcn CLI can overwrite them).

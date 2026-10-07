@@ -17,7 +17,7 @@ type FormValues = z.infer<typeof schema>
 const endpoint = import.meta.env.VITE_FORM_ENDPOINT as string | undefined
 
 const field =
-  'w-full rounded-xl border border-pink bg-white px-4 py-3 text-ink placeholder:text-ink-soft/60 focus:border-rose-dark focus:outline-none focus:ring-2 focus:ring-pink'
+  'w-full rounded-xl border border-pink bg-surface px-4 py-3 text-ink placeholder:text-ink-soft/60 focus:border-rose-dark focus:outline-none focus:ring-2 focus:ring-pink'
 
 export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'sent' | 'error'>('idle')
@@ -79,7 +79,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-full bg-rose-dark px-6 py-3 font-medium text-white transition hover:bg-rose hover:text-ink disabled:opacity-60 sm:w-auto"
+              className="w-full rounded-full bg-rose-dark px-6 py-3 font-medium text-on-accent transition hover:bg-rose hover:text-ink disabled:opacity-60 sm:w-auto"
             >
               {isSubmitting ? 'Sending...' : 'Send message'}
             </button>

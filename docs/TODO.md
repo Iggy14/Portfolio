@@ -3,13 +3,11 @@
 ## Content (replace placeholders)
 - [ ] Name, role, tagline, and about text in `src/data/profile.ts`
 - [ ] Real email, GitHub, and LinkedIn links in `src/data/profile.ts`
-- [ ] Projects in `src/data/projects.ts` (title, summary, tags, role, year, problem/solution, links)
-- [ ] Project thumbnails and screenshots in `public/projects/`
+- [ ] Review the four GitHub projects in `src/data/projects.ts` (RemindU, ReelGroup, TankQ, Finance Tracker). Copy is drafted from each repo's README; the problem/solution wording is an assumption, so correct them (e.g. TankQ may be client work)
 - [ ] Tech stack in `src/data/skills.ts`
 - [ ] Experience in `src/data/experience.ts`
 - [ ] Add `public/resume.pdf`
 - [ ] Update title, description, and Open Graph tags in `index.html`
-- [ ] Design a final favicon in `public/favicon.svg` (currently a placeholder "Y")
 
 ## Setup
 - [ ] Create a Formspree (or similar) form and set `VITE_FORM_ENDPOINT` in `.env`
@@ -23,6 +21,7 @@
 
 ## Testing
 - [ ] Check in the browser at mobile, tablet, and desktop widths
+- [ ] Visually check the project gallery (`ProjectGallery.tsx`, `GalleryLightbox.tsx`) on `/projects/remindu`: thumbnails swap the hero, the phone strip scrolls and snaps, the lightbox opens at the clicked image, arrow keys and swipe work, and light and dark both look right. Built but not viewed in a browser (the Chrome extension was not connected)
 - [ ] Test the mobile menu (open, close, Esc, link click, scroll lock)
 - [ ] Verify About and Contact links from `/projects` and a project page
 - [ ] Verify scroll-spy highlighting on the home page
@@ -42,7 +41,6 @@
 ## Nice to have
 - [ ] Analytics (Plausible or Vercel Analytics)
 - [ ] Per-page titles and meta descriptions (`react-helmet-async` or React 19 head tags)
-- [ ] Convert images to WebP/AVIF
 - [ ] Project filtering by tag on `/projects`
 - [ ] Testimonials section
 - [ ] Blog or case studies (MDX)

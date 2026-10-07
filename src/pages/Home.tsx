@@ -6,8 +6,10 @@ import SectionHeading from '../components/SectionHeading'
 import ProjectCard from '../components/ProjectCard'
 import { profile } from '../data/profile'
 import { projects } from '../data/projects'
-import { skills } from '../data/skills'
-import { experience } from '../data/experience'
+import TechBento from '../components/TechBento'
+import Timeline from '../components/Timeline'
+import EducationList from '../components/EducationList'
+import { education, experience } from '../data/experience'
 
 export default function Home() {
   const featured = projects.filter((p) => p.featured)
@@ -39,7 +41,7 @@ export default function Home() {
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.08}>
+              <Reveal key={p.slug} delay={i * 0.08} className="h-full">
                 <ProjectCard project={p} />
               </Reveal>
             ))}
@@ -47,7 +49,7 @@ export default function Home() {
           <Reveal className="mt-10 text-center">
             <Link
               to="/projects"
-              className="inline-block rounded-full border-2 border-rose-dark px-6 py-3 font-medium text-rose-dark transition hover:bg-rose-dark hover:text-white"
+              className="inline-block rounded-full border-2 border-rose-dark px-6 py-3 font-medium text-rose-dark transition hover:bg-rose-dark hover:text-on-accent"
             >
               View all projects
             </Link>
@@ -61,20 +63,7 @@ export default function Home() {
           <Reveal>
             <SectionHeading eyebrow="Skills" title="Tech stack" />
           </Reveal>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {skills.map((group, i) => (
-              <Reveal key={group.category} delay={i * 0.08}>
-                <h3 className="mb-3 text-xl">{group.category}</h3>
-                <ul className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <li key={item} className="rounded-full bg-pink/60 px-4 py-1.5 text-sm font-medium text-rose-dark">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-            ))}
-          </div>
+          <TechBento />
         </div>
       </section>
 
@@ -84,24 +73,11 @@ export default function Home() {
           <Reveal>
             <SectionHeading eyebrow="Journey" title="Experience" />
           </Reveal>
-          <ol className="max-w-3xl space-y-8 border-l-2 border-pink pl-6">
-            {experience.map((job, i) => (
-              <li key={`${job.company}-${job.period}`} className="relative">
-                <span className="absolute -left-[33px] top-2 h-3 w-3 rounded-full bg-rose-dark" aria-hidden />
-                <Reveal delay={i * 0.08}>
-                  <p className="text-sm text-ink-soft">{job.period}</p>
-                  <h3 className="text-xl">
-                    {job.role} <span className="text-rose-dark">@ {job.company}</span>
-                  </h3>
-                  <ul className="mt-2 list-disc space-y-1 pl-5 text-ink-soft">
-                    {job.highlights.map((h) => (
-                      <li key={h}>{h}</li>
-                    ))}
-                  </ul>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
+          <Timeline items={experience} />
+          <Reveal>
+            <h3 className="mb-6 mt-14 text-2xl">Education</h3>
+          </Reveal>
+          <EducationList items={education} />
         </div>
       </section>
     </>

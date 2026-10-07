@@ -7,7 +7,7 @@ export default function AboutPhoto() {
         <div className="absolute inset-0 -translate-x-3 translate-y-3 rounded-full bg-rose-dark" aria-hidden />
         <div className="absolute inset-0 translate-x-3 -translate-y-1 rounded-full bg-rose" aria-hidden />
         <img
-          src="/about.jpg"
+          src="/about.webp"
           alt="Portrait"
           width={800}
           height={800}
