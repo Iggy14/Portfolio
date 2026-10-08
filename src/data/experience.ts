@@ -41,7 +41,7 @@ export const experience: Experience[] = [
   },
   {
     role: 'Web & Database Trainee',
-    company: 'Teacher Ei Mon Mon Swe, Yangon',
+    company: 'Ei Mon Mon Swe Academy',
     period: 'Jul 2020 - Sep 2022',
     highlights: ['Built web projects with HTML/CSS/JS and worked on SQL schema design and data normalization.'],
   },

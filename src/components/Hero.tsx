@@ -15,7 +15,7 @@ function NameLines({ className = '', intro = false }: { className?: string; intr
           {first}
         </span>
         {intro && (
-          <p className="absolute left-[50px] top-full mt-[80px] max-w-[15rem] text-xs font-normal text-hero-text [-webkit-text-stroke:0] sm:max-w-xs sm:text-sm">
+          <p className="absolute left-[50px] top-full mt-[80px] hidden max-w-xs text-sm font-normal text-hero-text [-webkit-text-stroke:0] md:block">
             {profile.heroIntro}
           </p>
         )}
@@ -25,7 +25,7 @@ function NameLines({ className = '', intro = false }: { className?: string; intr
           {second}
         </span>
         {intro && (
-          <SocialLinks className="pointer-events-auto absolute -left-[10px] flex-col top-1/2 -translate-y-1/2 text-base [-webkit-text-stroke:0]" />
+          <SocialLinks className="pointer-events-auto absolute -left-[10px] top-1/2 hidden -translate-y-1/2 flex-col text-base [-webkit-text-stroke:0] md:flex" />
         )}
       </div>
     </div>
@@ -73,8 +73,14 @@ export default function Hero() {
           className="pointer-events-none z-20 text-transparent [-webkit-text-stroke:2px_var(--color-hero-text)]"
         />
 
+        {/* Mobile only: intro + socials sit just above the bottom rule */}
+        <div className="relative z-30 mx-auto mt-auto flex w-full max-w-6xl items-end justify-between gap-3 px-4 pb-3 md:hidden">
+          <p className="max-w-[12rem] text-xs text-hero-text">{profile.heroIntro}</p>
+          <SocialLinks className="shrink-0" />
+        </div>
+
         {/* Bottom bar */}
-        <div className="relative z-30 mx-auto mt-auto flex w-full max-w-6xl items-center border-t border-hero-text/60 px-4 py-4 sm:px-6">
+        <div className="relative z-30 mx-auto flex w-full max-w-6xl items-center md:mt-auto border-t border-hero-text/60 px-4 py-4 sm:px-6">
           <p className="font-hero text-xl uppercase tracking-wide text-hero-text sm:text-3xl">
             I&apos;m {profile.shortName}, a {profile.role}
           </p>

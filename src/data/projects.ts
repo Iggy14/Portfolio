@@ -123,7 +123,6 @@ export const projects: Project[] = [
       { src: '/projects/finance-tracker/mobile-calendar.webp', alt: 'Finance Tracker home: account balance card and a monthly calendar with under, near and over budget dots', kind: 'mobile' },
       { src: '/projects/finance-tracker/mobile-analytics.webp', alt: 'Finance Tracker analytics: total spent, average per day, days over budget and a spending-by-category chart', kind: 'mobile' },
       { src: '/projects/finance-tracker/mobile-settings.webp', alt: 'Finance Tracker settings: bank accounts with balances and daily budgets, and the profile', kind: 'mobile' },
-      { src: '/projects/remindu/mobile-notifications.webp', alt: 'RemindU push notifications on Android: buy cat food is due tomorrow, Anniversary is due in 3 days', kind: 'mobile' },
       { src: '/projects/finance-tracker/mobile-entry.webp', alt: 'Finance Tracker day entry sheet where numbers and formulas like =A1+B2*3 can be typed', kind: 'mobile' },
       { src: '/projects/finance-tracker/mobile-sign-in.webp', alt: 'Finance Tracker sign-in with a Continue with Google button', kind: 'mobile' },
     ],
