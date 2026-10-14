@@ -1,5 +1,6 @@
 import { lazy } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Layout from './components/Layout'
 
 const Home = lazy(() => import('./pages/Home'))
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <Analytics />
     </BrowserRouter>
   )
 }

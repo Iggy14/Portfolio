@@ -24,6 +24,33 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: '2ndu',
+    title: '2ndU',
+    summary:
+      'A second-hand marketplace for Rangsit University students: browse, post and chat about pre-loved items.',
+    thumbnail: '/projects/2ndu/home.webp',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+    overview:
+      '2ndU is a campus marketplace where Rangsit University students buy and sell pre-loved items. Members browse listings, post their own, and chat with each other, with an admin role for moderation.',
+    problem:
+      'Students throw away or struggle to resell books, furniture and gadgets, and general marketplaces or group chats make it hard to trust that a seller is a real student.',
+    solution:
+      'Sellers are verified: they confirm a school email and a student ID, enforced by a database function rather than the client. Row Level Security protects the data, and Supabase Realtime powers chat between buyers and sellers.',
+    images: [
+      { src: '/projects/2ndu/home.webp', alt: '2ndU home page: a rack of second-hand shirts and shoes on a green background with Shop Now and Sell Yours buttons' },
+      { src: '/projects/2ndu/listing.webp', alt: '2ndU listing page for a refrigerator with a photo carousel, discounted price, Chat with Seller button and details tabs' },
+      { src: '/projects/2ndu/chats.webp', alt: '2ndU chats: a list of conversations on the left and a buyer and seller negotiating a water bottle price on the right' },
+      { src: '/projects/2ndu/become-seller.webp', alt: '2ndU Become a Seller page asking for a school email to send a confirmation link' },
+      { src: '/projects/2ndu/post-item.webp', alt: '2ndU List an Item form with title, description, categories, location, handover options and image upload' },
+      { src: '/projects/2ndu/mobile-home.webp', alt: '2ndU home page on a phone with Shop Now and Sell Yours buttons', kind: 'mobile' },
+      { src: '/projects/2ndu/mobile-sign-up.webp', alt: '2ndU Create an Account form on a phone with Just Buying and Buy and Sell options', kind: 'mobile' },
+      { src: '/projects/2ndu/mobile-browse.webp', alt: '2ndU Fresh Finds grid on a phone with category filters and item prices', kind: 'mobile' },
+    ],
+    liveUrl: 'https://2nd-u.vercel.app',
+    repoUrl: 'https://github.com/Iggy14/2ndU',
+    featured: true,
+  },
+  {
     slug: 'remindu',
     title: 'RemindU',
     summary:
@@ -47,34 +74,6 @@ export const projects: Project[] = [
     ],
     liveUrl: 'https://remind-u-ivory.vercel.app',
     repoUrl: 'https://github.com/Iggy14/RemindU',
-    featured: true,
-  },
-  {
-    slug: 'reelgroup',
-    title: 'ReelGroup',
-    summary:
-      'A group movie-night picker: suggest films, vote, track what you have seen, and settle ties with a live bracket.',
-    thumbnail: '/projects/reelgroup/main.webp',
-    tags: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS'],
-    overview:
-      'ReelGroup helps a group of friends agree on what to watch. Members join a group with an invite code, suggest films from TMDB, and vote; the top-voted film becomes Tonight\'s Pick.',
-    problem:
-      'Choosing a movie as a group usually turns into endless back-and-forth in a chat, with no record of what has already been watched.',
-    solution:
-      'A "Decide Now" live session runs a bracket where each member makes a final pick, with ties spawning a runoff automatically. Per-member watched tracking, optimistic voting, and Supabase Realtime keep everyone in sync.',
-    images: [
-      { src: '/projects/reelgroup/main.webp', alt: 'ReelGroup watchlist: six suggested films with vote counts and a Decide Now button' },
-      { src: '/projects/reelgroup/sign-in.webp', alt: 'ReelGroup sign-in screen with an invite-code field' },
-      { src: '/projects/reelgroup/tonights-pick.webp', alt: 'Tonight\'s Pick: the top-voted film with its synopsis and who suggested it' },
-      { src: '/projects/reelgroup/decide-now.webp', alt: 'Decide Now live bracket: choose between Blade Runner 2049 and Van Helsing' },
-      { src: '/projects/reelgroup/film-details.webp', alt: 'Film details dialog for Monsters vs Aliens with a Choose This button' },
-      { src: '/projects/reelgroup/members.webp', alt: 'Group page with the invite code and each member\'s watched and suggested counts' },
-      { src: '/projects/reelgroup/mobile-watchlist.webp', alt: 'ReelGroup watchlist on a phone', kind: 'mobile' },
-      { src: '/projects/reelgroup/mobile-suggest.webp', alt: 'Suggest a Film dialog on a phone', kind: 'mobile' },
-      { src: '/projects/reelgroup/mobile-members.webp', alt: 'Group members page on a phone', kind: 'mobile' },
-    ],
-    liveUrl: 'https://reel-group-movie-picker.vercel.app',
-    repoUrl: 'https://github.com/Iggy14/ReelGroup-Movie-Picker',
     featured: true,
   },
   {
@@ -104,6 +103,34 @@ export const projects: Project[] = [
     liveUrl: 'https://www.tankq-solution.com',
     repoUrl: 'https://github.com/Iggy14/tankq',
     featured: true,
+  },
+  {
+    slug: 'reelgroup',
+    title: 'ReelGroup',
+    summary:
+      'A group movie-night picker: suggest films, vote, track what you have seen, and settle ties with a live bracket.',
+    thumbnail: '/projects/reelgroup/main.webp',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS'],
+    overview:
+      'ReelGroup helps a group of friends agree on what to watch. Members join a group with an invite code, suggest films from TMDB, and vote; the top-voted film becomes Tonight\'s Pick.',
+    problem:
+      'Choosing a movie as a group usually turns into endless back-and-forth in a chat, with no record of what has already been watched.',
+    solution:
+      'A "Decide Now" live session runs a bracket where each member makes a final pick, with ties spawning a runoff automatically. Per-member watched tracking, optimistic voting, and Supabase Realtime keep everyone in sync.',
+    images: [
+      { src: '/projects/reelgroup/main.webp', alt: 'ReelGroup watchlist: six suggested films with vote counts and a Decide Now button' },
+      { src: '/projects/reelgroup/sign-in.webp', alt: 'ReelGroup sign-in screen with an invite-code field' },
+      { src: '/projects/reelgroup/tonights-pick.webp', alt: 'Tonight\'s Pick: the top-voted film with its synopsis and who suggested it' },
+      { src: '/projects/reelgroup/decide-now.webp', alt: 'Decide Now live bracket: choose between Blade Runner 2049 and Van Helsing' },
+      { src: '/projects/reelgroup/film-details.webp', alt: 'Film details dialog for Monsters vs Aliens with a Choose This button' },
+      { src: '/projects/reelgroup/members.webp', alt: 'Group page with the invite code and each member\'s watched and suggested counts' },
+      { src: '/projects/reelgroup/mobile-watchlist.webp', alt: 'ReelGroup watchlist on a phone', kind: 'mobile' },
+      { src: '/projects/reelgroup/mobile-suggest.webp', alt: 'Suggest a Film dialog on a phone', kind: 'mobile' },
+      { src: '/projects/reelgroup/mobile-members.webp', alt: 'Group members page on a phone', kind: 'mobile' },
+    ],
+    liveUrl: 'https://reel-group-movie-picker.vercel.app',
+    repoUrl: 'https://github.com/Iggy14/ReelGroup-Movie-Picker',
+    featured: false,
   },
   {
     slug: 'finance-tracker',

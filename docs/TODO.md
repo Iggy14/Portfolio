@@ -8,6 +8,7 @@
 - [x] Experience in `src/data/experience.ts`
 - [x] Add `public/resume.pdf`
 - [x] Make title/description in `index.html` more specific and add an `og:image`
+- [ ] Verify the 2ndU copy in `src/data/projects.ts` (slug `2ndu`; problem/solution wording drafted from its README and description) and decide whether to set `featured: true`
 
 ## Setup
 - [ ] Create a Formspree (or similar) form and set `VITE_FORM_ENDPOINT` in `.env`
