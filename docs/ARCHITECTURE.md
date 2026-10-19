@@ -41,7 +41,7 @@ src/
     ProjectCard.tsx      Thumbnail card linking to a project page
     SocialLinks.tsx      Icon links (hero and footer)
     SectionHeading.tsx
-    Hero.tsx             Home hero: name in 3 layers (solid / portrait / outlined), from profile.heroLines
+    Hero.tsx             Home hero: name in 3 layers (solid / portrait / outlined), from profile.heroLines. Name size, line gap and portrait width all derive from one `--hero-fs` variable (bounded by both viewport width and height) so the hero fits any laptop; socials sit in flow above the bottom rule, so keep new hero content in the same flow rather than absolutely positioned
     ThemeToggle.tsx      Light/dark switch
     Timeline.tsx         Vertical timeline for experience and education (both use the Experience shape)
     EducationList.tsx    Minimal education list (degree, school, right-aligned dates)
