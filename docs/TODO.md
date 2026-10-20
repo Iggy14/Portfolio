@@ -9,6 +9,9 @@
 - [x] Add `public/resume.pdf`
 - [x] Make title/description in `index.html` more specific and add an `og:image`
 - [ ] Verify the 2ndU copy in `src/data/projects.ts` (slug `2ndu`; problem/solution wording drafted from its README and description) and decide whether to set `featured: true`
+- [ ] Confirm the Kaggle dataset for `3a-superstore`: search "3A Superstore" on Kaggle, then set `dataset.url` (and add the author if wanted) in `src/data/projects.ts`. Skipped because the dataset name came from a web search and the page itself was never opened, so no link was invented
+- [ ] Confirm the dashboard tool and Kaggle datasets for `netflix-dashboard` and `nba-players-insight` in `src/data/projects.ts`. Skipped because only the screenshots exist: the tool (Tableau) is inferred from the styling and the Mapbox map credit, and the dataset names are generic (searches could not pin down the exact Kaggle pages). Find each dataset on Kaggle, set `dataset.name` and `dataset.url`, and correct the `Tableau` tag if the tool was different. The Netflix counts (6,234 titles) suggest an older version of the dataset than the common 8,807-row one
+- [ ] Add the remaining Data Analytics dashboards to `src/data/projects.ts` (`category: 'analytics'`, copy limited to what the screenshot shows, WebP in `public/projects/<slug>/`, new slug in `public/sitemap.xml`). Verify the Power BI/Kaggle claims in the `3a-superstore` entry
 
 ## Setup
 - [ ] Create a Formspree (or similar) form and set `VITE_FORM_ENDPOINT` in `.env`

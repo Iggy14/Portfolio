@@ -6,10 +6,12 @@ import GalleryLightbox from './GalleryLightbox'
 interface ProjectGalleryProps {
   title: string
   images: ProjectImage[]
+  /** Dashboard screenshots vary in shape; show them at their natural ratio instead of cropping to 2:1. */
+  wide?: boolean
 }
 
 /** Desktop shots: one large hero with a thumbnail strip. Mobile shots: a horizontal phone strip. */
-export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
+export default function ProjectGallery({ title, images, wide = false }: ProjectGalleryProps) {
   const desktop = images.filter((image) => image.kind !== 'mobile')
   const mobile = images.filter((image) => image.kind === 'mobile')
   // The lightbox walks desktop shots first, then mobile, matching the order on the page.
@@ -34,7 +36,7 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
               width={1600}
               height={1000}
               decoding="async"
-              className="aspect-[2/1] w-full object-cover"
+              className={cn('w-full', wide ? 'h-auto' : 'aspect-[2/1] object-cover')}
             />
           </button>
 

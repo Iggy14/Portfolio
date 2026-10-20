@@ -8,14 +8,25 @@ export interface ProjectImage {
 export interface Project {
   slug: string
   title: string
+  /** Groups the project on /projects. */
+  category: 'software' | 'analytics'
   summary: string
   thumbnail: string
   /** 'mobile' renders the card media as a stack of phone shots (from `images` with kind 'mobile'). Default 'desktop'. */
   thumbnailKind?: 'desktop' | 'mobile'
   tags: string[]
   overview: string
-  problem: string
-  solution: string
+  /** Omit for projects with no real-world problem/solution (e.g. dataset exercises). */
+  problem?: string
+  solution?: string
+  /** What the project shows, as short bullets (used by analytics dashboards). */
+  highlights?: string[]
+  /** Findings read off the project (analytics dashboards). Interpretation of what is visible, not invented results. */
+  conclusions?: string[]
+  /** Suggested actions, framed as "if this were a live business"; never claimed outcomes. */
+  recommendations?: string[]
+  /** Source dataset; `url` is omitted until confirmed. */
+  dataset?: { name: string; url?: string }
   images: ProjectImage[]
   liveUrl?: string
   repoUrl?: string
@@ -26,6 +37,7 @@ export const projects: Project[] = [
   {
     slug: '2ndu',
     title: '2ndU',
+    category: 'software',
     summary:
       'A second-hand marketplace for Rangsit University students: browse, post and chat about pre-loved items.',
     thumbnail: '/projects/2ndu/home.webp',
@@ -53,6 +65,7 @@ export const projects: Project[] = [
   {
     slug: 'remindu',
     title: 'RemindU',
+    category: 'software',
     summary:
       'An AI life-admin PWA: describe a responsibility in plain language and it becomes a reminder with push notifications.',
     thumbnail: '/projects/remindu/mobile-home.webp',
@@ -74,11 +87,12 @@ export const projects: Project[] = [
     ],
     liveUrl: 'https://remind-u-ivory.vercel.app',
     repoUrl: 'https://github.com/Iggy14/RemindU',
-    featured: true,
+    featured: false,
   },
   {
     slug: 'tankq',
     title: 'TankQ',
+    category: 'software',
     summary:
       'A bilingual (Thai/English) marketing and catalogue website for an FRP tank manufacturer.',
     thumbnail: '/projects/tankq/home.webp',
@@ -107,6 +121,7 @@ export const projects: Project[] = [
   {
     slug: 'reelgroup',
     title: 'ReelGroup',
+    category: 'software',
     summary:
       'A group movie-night picker: suggest films, vote, track what you have seen, and settle ties with a live bracket.',
     thumbnail: '/projects/reelgroup/main.webp',
@@ -135,6 +150,7 @@ export const projects: Project[] = [
   {
     slug: 'finance-tracker',
     title: 'Finance Tracker',
+    category: 'software',
     summary:
       'A mobile-first personal finance app for tracking daily expenses across multiple bank accounts.',
     thumbnail: '/projects/finance-tracker/mobile-calendar.webp',
@@ -155,6 +171,112 @@ export const projects: Project[] = [
     ],
     liveUrl: 'https://finance-tracker-zeta-murex-50.vercel.app',
     repoUrl: 'https://github.com/Iggy14/finance-tracker',
+    featured: false,
+  },
+  {
+    slug: '3a-superstore',
+    title: '3A Superstore',
+    category: 'analytics',
+    summary:
+      'A Power BI dashboard on customer demographics and order patterns for a Turkish retail chain.',
+    thumbnail: '/projects/3a-superstore/dashboard.webp',
+    tags: ['Power BI', 'Data Visualization', 'Kaggle'],
+    overview:
+      'An exploratory Power BI dashboard built on the 3A Superstore dataset from Kaggle, looking at who orders, where, and when across a Turkish retail chain.',
+    highlights: [
+      'Headline cards for top-spending gender (F), top-spending age (67) and the region with the most customers (Marmara)',
+      'Total orders by region, led by İç Anadolu, then Akdeniz and Marmara',
+      'Total orders by customer age and by month (the month axis is alphabetical, not calendar order)',
+      'A map of customer concentration and a branch-town ranking, with Yenimahalle highest at 311,235 orders',
+    ],
+    conclusions: [
+      'İç Anadolu leads on total orders (roughly 1.5M), ahead of Akdeniz and Marmara, with orders falling steadily down to Doğu Anadolu.',
+      'Marmara has the most customers but ranks third on orders, which suggests fewer orders per customer there than in İç Anadolu.',
+      'Orders look seasonal: January, March, April, May, June and July sit near 1.0M, while September to December drop to roughly 0.65M.',
+      'Age is not a strong differentiator: orders stay within a narrow band (about 890K to 960K) with no clear trend, so the age-67 peak is only a marginal lead.',
+      'Orders are concentrated in a few branch towns. Yenimahalle (311,235) and Çankaya (260,761), both in Ankara, lead, which fits İç Anadolu being the top region.',
+    ],
+    recommendations: [
+      'Investigate why Marmara has so many customers but fewer orders, for example with loyalty offers or reorder reminders to lift order frequency.',
+      'Plan promotions for the September to December dip, and make sure stock and staffing cover the January to July peak.',
+      'Segment campaigns by region, branch town and gender rather than age, since age shows little variation.',
+      'Add revenue, margin and orders-per-customer measures. Order counts alone cannot show profitability or customer value, and a year filter would separate seasonality from growth.',
+    ],
+    dataset: { name: '3A Superstore (Kaggle)' },
+    images: [
+      { src: '/projects/3a-superstore/dashboard.webp', alt: '3A Superstore Power BI dashboard: top spending gender, age and region cards, orders by region, age and month, a customer map and a branch-town table' },
+    ],
+    featured: true,
+  },
+  {
+    slug: 'netflix-dashboard',
+    title: 'Netflix Dashboard',
+    category: 'analytics',
+    summary:
+      'A Tableau dashboard exploring the Netflix catalogue by type, genre, rating, country and year.',
+    thumbnail: '/projects/netflix-dashboard/dashboard.webp',
+    tags: ['Tableau', 'Data Visualization', 'Kaggle'],
+    overview:
+      'An exploratory Tableau dashboard built on a Netflix Movies and TV Shows dataset from Kaggle, showing what the catalogue is made of and how it grew, with a detail panel for a selected title.',
+    highlights: [
+      'A title detail panel (type, date added, rating, duration, release year, genre and description) shown for 3Below: Tales of Arcadia',
+      'A world map shaded by the number of titles per country',
+      'The top 10 genre combinations, led by Documentaries (299), Stand-Up Comedy (273) and Dramas, International Movies (248)',
+      'Title counts by rating, led by TV-MA (2,027) and TV-14 (1,698)',
+      'Movies and TV shows added by year, and a movie versus TV show split of 4,265 to 1,969',
+    ],
+    conclusions: [
+      'Movies dominate the catalogue: 4,265 titles (68.42%) against 1,969 TV shows.',
+      'Growth is recent. Titles barely register before about 2015, then climb steeply to a peak in 2019 of roughly 2,300. The sharp fall in 2020 is probably a partial year, so it should not be read as a decline.',
+      'The catalogue leans mature: TV-MA and TV-14 together cover about 60% of titles, while the kids ratings (TV-Y7, TV-G, TV-Y, TV-Y7-FV and G) add up to under 10%.',
+      'Documentaries and stand-up comedy are the largest single genre tags, and five of the top ten genre combinations include International Movies.',
+    ],
+    recommendations: [
+      'Check how much of 2020 the data covers before drawing any conclusion about a slowdown.',
+      'If household or family subscribers matter, the thin kids and family share (under 10% by rating) is the clearest gap to look at.',
+      'Add viewing or engagement data. Title counts show what is on the service, not what people watch, so they cannot say which genres to invest in.',
+      'Replace the map with a ranked bar chart of top countries, since a shaded map is hard to read precisely and hides the ranking.',
+    ],
+    dataset: { name: 'Netflix Movies and TV Shows (Kaggle)' },
+    images: [
+      { src: '/projects/netflix-dashboard/dashboard.webp', alt: 'Netflix Tableau dashboard: a title detail panel, a country map, the top 10 genres, ratings, titles by year and a movie versus TV show split' },
+    ],
+    featured: false,
+  },
+  {
+    slug: 'nba-players-insight',
+    title: 'NBA Players Insight',
+    category: 'analytics',
+    summary:
+      'A Tableau dashboard on NBA player scoring, schools, age and PER, debut years and active status.',
+    thumbnail: '/projects/nba-players-insight/dashboard.webp',
+    tags: ['Tableau', 'Data Visualization', 'Kaggle'],
+    overview:
+      'An exploratory Tableau dashboard built on an NBA players dataset from Kaggle, covering all-time scoring leaders, where players come from, how PER varies with age, and how many players are still active, with a player card for a selected player.',
+    highlights: [
+      'A player card (position, height, weight, birthday, school, debut year and PER) shown for Cody Williams',
+      'The top 10 career scorers against their average, led by LeBron James (42,174), Karl Malone (36,900) and Kobe Bryant (33,650)',
+      'The five schools that produced the most players: Kentucky, Duke, UCLA, UNC and Kansas',
+      'Average PER by age, from 8.5 at age 20 to 11.574 at age 23',
+      'Players per debut year, average height and weight, and a split of 885 active to 4,384 inactive players',
+    ],
+    conclusions: [
+      'Most players in the data are inactive: 4,384 of 5,269 (83.25%), against 885 active players.',
+      'LeBron James is the clear career-scoring leader at 42,174 points. Four of the top ten sit above the top-ten average line.',
+      'Kentucky is the largest source of players, ahead of Duke, UCLA and UNC, which are close together. The school chart does not start at zero, so it exaggerates how small Kansas looks next to Kentucky.',
+      'PER is highest at age 23 (11.574) and lowest at age 20 (8.5), with ages 21 to 25 all above 10, so production seems to settle in from the early twenties.',
+      'The debut-year chart is not in calendar order and every value is 100 or more, so it appears to show only the busiest debut years, led by 1968 (172) and 1947 (161). It cannot show a trend over time.',
+    ],
+    recommendations: [
+      'For scouting, treat ages 21 to 25 as the main window, but check how many players sit behind each age before relying on the PER averages.',
+      'Compare scorers across eras with per-game or per-season figures. Career points favour long careers, so the ranking mixes eras and career lengths.',
+      'Put the school chart on a zero-based axis and the debut-year chart in calendar order so both can be read without a misleading impression.',
+      'Add player counts next to PER by age, and a way to see PER by position, so the numbers can be trusted.',
+    ],
+    dataset: { name: 'NBA players (Kaggle)' },
+    images: [
+      { src: '/projects/nba-players-insight/dashboard.webp', alt: 'NBA Players Insight Tableau dashboard: a player card, top 10 scorers, top 5 schools, PER by age, players per debut year, average height and weight, and active versus inactive players' },
+    ],
     featured: false,
   },
 ]

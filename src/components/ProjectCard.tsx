@@ -19,7 +19,11 @@ export default function ProjectCard({ project }: { project: Project }) {
             height={960}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            className={
+              project.category === 'analytics'
+                ? 'h-full w-full object-contain transition duration-500 group-hover:scale-105'
+                : 'h-full w-full object-cover transition duration-500 group-hover:scale-105'
+            }
           />
         )}
       </div>

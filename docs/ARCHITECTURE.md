@@ -150,6 +150,10 @@ A project's `images` is `ProjectImage[]`: `{ src, alt, kind? }`. `kind: 'mobile'
 
 Set `thumbnailKind: 'mobile'` on a project that only exists as a phone app. `ProjectCard` then keeps its 2:1 media area but renders `PhoneStack` (up to three `kind: 'mobile'` images as phone frames, first shot in the centre) instead of the cropped `thumbnail`. Such a project needs at least one mobile image; `thumbnail` is unused for the card.
 
+## Project categories and analytics projects
+
+Every project has `category: 'software' | 'analytics'`; `/projects` renders one headed group per category (a group with no projects is hidden). `problem` and `solution` are optional: analytics entries (dashboards built from datasets, screenshots only) omit them rather than inventing a story, and use `highlights` (bullets under "What it shows") and `dataset` (`{ name, url? }`, shown under "Dataset" and linked only when `url` is set) instead. `conclusions` and `recommendations` (optional bullets) interpret what the dashboard shows; recommendations are phrased as "if this were a live business" and must never claim real outcomes. Copy for these entries describes only what is visible in the screenshot. Analytics screenshots vary in shape (about 1.6:1 to 1.85:1), so the gallery hero uses `wide` (natural ratio, no crop) and the card thumbnail uses `object-contain`. The detail page's "Next project" stays within the same category and is hidden when a category has one project.
+
 ## shadcn/ui
 
 Components live in `src/components/ui/` and import through the `@/` alias (`src/*`, set in `tsconfig.json`, `tsconfig.app.json` and `vite.config.ts`). The shadcn tokens (`--background`, `--primary`, `--border`, etc.) at the end of `src/index.css` point at the site palette, so they follow dark mode with no extra work. Add components with `npx shadcn@latest add <name>`, then check that `index.css` keeps the Inter font and cream body background (the shadcn CLI can overwrite them).
