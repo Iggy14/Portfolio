@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal portfolio of Hsu Lab Phyo Pai (Iggy), a software developer. Live at https://portfolio-taupe-seven-n4djdw0nk9.vercel.app/
+Personal portfolio of Hsu Lab Phyo Pai (Iggy), a software developer. Live at https://hsulabphyopai.vercel.app/
 
 A single-page site with a home page (hero, about, featured projects, tech stack, experience), a projects index, per-project detail pages with image galleries, a contact form, and a light/dark theme.
 

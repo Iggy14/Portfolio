@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-taupe-seven-n4djdw0nk9.vercel.app/sitemap.xml
+Sitemap: https://hsulabphyopai.vercel.app/sitemap.xml
